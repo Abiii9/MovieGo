@@ -18,6 +18,7 @@ class Command(BaseCommand):
             reader = csv.reader(f, delimiter=',')
             next(reader)
             for row in reader:
+                #print(reader.line_num)
                 company = Companies.objects.create(production_companies = row[0])
                 company.save()
 
