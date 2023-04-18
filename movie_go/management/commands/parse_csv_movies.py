@@ -1,5 +1,6 @@
 import os
 import csv
+import ast
 from pathlib import Path
 from django.db import models
 from django.core.management.base import BaseCommand,CommandError
@@ -41,7 +42,9 @@ class Command(BaseCommand):
                 spoken_languages = language_obj,
                 tagline = row[12],
                 title = row[13],
-                votes = vote_obj)
+                votes = vote_obj,
+                poster_path = ast.literal_eval(row[0])['poster_path'])
+                print(ast.literal_eval(row[0])['poster_path'])
                 movie.save()
 
         print('data parsed successfully')

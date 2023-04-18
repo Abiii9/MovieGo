@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="index">
+    <div class="banner">
+        <img src="https://image.tmdb.org/t/p/w500/7G9915LfUQ2lVfwMEEhDsn3kT4B.jpg">
+        <div class="banner-text">
+            <h2>Lorem ipsum</h2>
+            <p>irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+            <p>dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <button class="btn">Explore</button>
+        </div>
+        
+    </div>
+    <div class="movies">
+        {%for zone in zones%}
+        <p> {{zone.resolution}} <p>
+        {%endfor%}
+        {%for movie in movies%}
+        <p> {{movie.belongs_to_collection}} <p> <p> {{movie.votes.vote_average}} </p>
+        {%endfor%}
+
+    </div>
+</section>
+{%endblock%}

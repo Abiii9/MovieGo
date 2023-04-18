@@ -1,0 +1,50 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+    background-color: rgb(58, 57, 57);
+}
+.navbar {
+    color: whitesmoke;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 30px;
+    font-family: 'Varela Round', sans-serif;
+}
+.menu a{
+    padding: 0 20px;
+}
+.banner{
+    margin:0 auto;
+    height:600px;
+    width: 1300px;
+    background-color: rgb(233, 222, 222);
+    /*clip-path: polygon(5% 8%, 94% 8%, 94% 94%, 5% 95%);*/
+    border-radius: 50px;
+    display: flex;
+    flex-direction: row;
+    font-family: 'Varela Round', sans-serif;
+    color: rgb(22, 22, 22);
+    justify-content: space-around;
+    /*box-shadow: 0 1px 10px rgba(0, 0, 0, 0.75), 0 -1px 10px rgba(0,0,0,0.75);*/
+}
+.banner img{
+    width: 900px;
+    filter: brightness(50%);
+}
+.banner-text{
+    padding: 20px;
+    align-self: center;
+}
+.banner-text h2{
+    margin-bottom: 20px;
+}
+
+.btn{
+    text-decoration: none;
+    
+}

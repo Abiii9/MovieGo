@@ -43,6 +43,17 @@ class Movies(models.Model):
     tagline = models.TextField()
     title = models.TextField()
     votes = models.ForeignKey(Votes, on_delete=models.CASCADE)
+    poster_path = models.TextField(null=True)
     def __str__(self):
         return f'movie name: {self.title}, {self.release_date} '
     
+class Zones(models.Model):
+    seats = models.IntegerField()
+    screenwidth = models.IntegerField()
+    aspect_ratio = models.TextField()
+    resolution = models.TextField()
+    image = models.TextField()
+    address = models.TextField()
+    cost = models.FloatField()
+    def __str__(self):
+        return f'{self.seats}, {self.cost}'
