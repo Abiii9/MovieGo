@@ -1,4 +1,10 @@
 {% extends "base.html" %}
+{% load static %}
+{%block style%}
+<style>
+
+</style>
+{%endblock%}
 {% block content %}
 <section class="index">
     <div class="banner">
@@ -12,14 +18,28 @@
         </div>
         
     </div>
-    <div class="movies">
+    <h2 class="zones-heading">Select zones to watch !!!</h2>
+    <a class="index-a" href="#">view more &rAarr;</a>
+    <div class="zones">
         {%for zone in zones%}
-        <p> {{zone.resolution}} <p>
+            <div class="zone-items">
+                <img src = "{% static 'images/' %}{{zone.image}}">
+                <h4>{{zone.seats}} seats</h4>
+                <p>{{zone.resolution}} resolution</p>
+                <a href="#">view product</a>
+            </div>
         {%endfor%}
+    </div>
+    <h2 class="zones-heading">Select movies to watch !!!</h2>
+    <a class="index-a" href="#">view more &rAarr;</a>
+    <div class="movies">
         {%for movie in movies%}
-        <p> {{movie.belongs_to_collection}} <p> <p> {{movie.votes.vote_average}} </p>
+            <div class="movie-items">
+                <img src = "https://image.tmdb.org/t/p/w500{{movie.poster_path}}">
+                <h4>{{movie.title}}, vote: {{movie.votes.vote_average}}</h4>
+                <p>{{movie.release_date}}</p>
+            </div>
         {%endfor%}
-
     </div>
 </section>
 {%endblock%}

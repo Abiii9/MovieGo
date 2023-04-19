@@ -18,6 +18,16 @@ body{
 .menu a{
     padding: 0 20px;
 }
+.index{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+.index-a{
+    margin: 0 50px 0 auto; 
+    text-decoration: none;
+    color: whitesmoke;
+}
 .banner{
     margin:0 auto;
     height:600px;
@@ -30,7 +40,7 @@ body{
     font-family: 'Varela Round', sans-serif;
     color: rgb(22, 22, 22);
     justify-content: space-around;
-    /*box-shadow: 0 1px 10px rgba(0, 0, 0, 0.75), 0 -1px 10px rgba(0,0,0,0.75);*/
+/*box-shadow: 0 1px 10px rgba(0, 0, 0, 0.75), 0 -1px 10px rgba(0,0,0,0.75);*/
 }
 .banner img{
     width: 900px;
@@ -41,10 +51,72 @@ body{
     align-self: center;
 }
 .banner-text h2{
+    margin: 0 600px 0 auto;
     margin-bottom: 20px;
 }
 
 .btn{
     text-decoration: none;
-    
+    background-color: transparent;
+    margin-top: 30px;
+    padding: 8px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all .5s;
+}
+.btn:hover{
+    background-color: rgb(58, 57, 57);
+    color: whitesmoke;
+}
+.zones-heading{
+    margin-top: 50px;
+    font-family: 'Varela Round', sans-serif;
+    color: whitesmoke;
+}
+.zones{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.zone-items,.movie-items{
+    color: whitesmoke;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 20px;
+    margin: 10px;
+    text-align: center;
+}
+.zone-items img{
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    margin: 0 10px;
+    transition: all .3s;
+}
+.zone-items img:hover, .movie-items img:hover{
+    transform: scale(1.2);
+    cursor: pointer;
+}
+.zone-items a, .movie-items a{
+    text-decoration: none;
+    cursor: pointer;
+    color: whitesmoke;
+}
+
+/*movies*/
+
+.movies{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.movie-items img{
+    width: 300px;
+    height: 500px;
+    object-fit: contain;
+    margin: 0 10px;
+    transition: all .3s;
 }
