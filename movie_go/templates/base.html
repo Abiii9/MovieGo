@@ -9,6 +9,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Varela+Round&display=swap" rel="stylesheet">
         <link type="text/css" rel="stylesheet" href="/static/style.css" >
+        
         {%block style%} {%endblock%}      
         
     </head>
@@ -16,12 +17,15 @@
         <nav class="navbar">
             <div class="logo"><h2>MovieGo</h2></div>
             <div class="menu">
-                <a>Home</a>
-                <a>About</a>
-                <a>LogIn</a>
-                <a>SignUp</a>
+                <a href="{% url 'index'%}">Home</a>
+                <a href="">About</a>
+                <a href="">LogIn</a>
+                <a href="">SignUp</a>
             </div>
         </nav>
         {% block content %}{% endblock %}
+        <footer class="footer">
+            <p>© Abinaya Elangovan, 2023</p>
+        </footer>
     </body>
 </html>

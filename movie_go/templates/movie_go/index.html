@@ -14,7 +14,7 @@
             <p>irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
             <p>dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            <button class="btn">Explore</button>
+            <a class="btn" href="{% url 'movies'%}">Explore</a>
         </div>
         
     </div>
@@ -31,11 +31,11 @@
         {%endfor%}
     </div>
     <h2 class="zones-heading">Select movies to watch !!!</h2>
-    <a class="index-a" href="#">view more &rAarr;</a>
+    <a class="index-a" href="{% url 'movies'%}">view more &rAarr;</a>
     <div class="movies">
         {%for movie in movies%}
             <div class="movie-items">
-                <img src = "https://image.tmdb.org/t/p/w500{{movie.poster_path}}">
+                <a href="{% url 'product_details' movie.id %}"><img src = "https://image.tmdb.org/t/p/w500{{movie.poster_path}}" alt="image not found"></a>
                 <h4>{{movie.title}}, vote: {{movie.votes.vote_average}}</h4>
                 <p>{{movie.release_date}}</p>
             </div>

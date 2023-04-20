@@ -57,3 +57,48 @@ class Zones(models.Model):
     cost = models.FloatField()
     def __str__(self):
         return f'{self.seats}, {self.cost}'
+
+#shopping models
+class Cart(models.Model):
+    product = models.ForeignKey(Movies, on_delete=models.CASCADE, related_name='carts')
+    quantity = models.IntegerField()
+    created_date = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return f'{self.product},{self.quantity},{self.created_date}'
+
+class Customer(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True,)
+    address = models.TextField()
+    created_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.user.email}, {self.address}'
+
+    class Meta:
+        db_table = 'customer'
+
+    @receiver(post_save, sender=User)
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Customer.objects.create(user=instance)
+    
+    @receiver(post_save, sender=User)
+    def save_user_profile(sender, instance, **kwargs):
+        instance.customer.save()
+
+class Order(models.Model):
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    created_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.customer},{self.created_date}'
+class LineItem(models.Model):
+    quantity = models.IntegerField()
+    product = models.ForeignKey(Movies, on_delete=models.CASCADE)
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    created_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.quantity},{self.product},{self.cart},{self.order},{self.created_date}'
+

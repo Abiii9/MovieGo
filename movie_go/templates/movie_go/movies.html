@@ -1,9 +1,31 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-    <section class="movies">
-        <div class="form">
-            
+    <section class="movies-section">
+        <form class="form" action="{%url 'movies'%}" method="POST">
+            {% csrf_token %}
+            <label for="movie">Search for a movie: </label>
+            <input list="movie-names" id="movie" name="movie">
+            <datalist id="movie-names">
+                {% for movie in movie_names%}
+                <option value="{{movie}}">
+                {%endfor%}
+            </datalist>
+            <input type="submit" value="search" class="search">
+        </form>
+        <div class="genre-list">
+            {%for genre in genres%}
+                <a href="{% url 'movies' genre %}" class="genre-a">{{genre}}</a>
+            {%endfor%}
+        </div>
+        <div class="moviesgrid">
+            {%for movie in movies%}
+            <div class="movieg-items">
+                <a href="{% url 'product_details' movie.id %}"><img src = "https://image.tmdb.org/t/p/w500{{movie.poster_path}}" alt="image not found"></a>
+                <h4>{{movie.title}}, vote: {{movie.votes.vote_average}}</h4>
+                <p>{{movie.release_date}}</p>
+            </div>
+            {%endfor%}
         </div>
     </section>
 {%endblock%}
