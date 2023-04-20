@@ -58,9 +58,20 @@ class Zones(models.Model):
     def __str__(self):
         return f'{self.seats}, {self.cost}'
 
+
 #shopping models
+class Product(models.Model):
+    name = models.CharField(max_length=200, db_index=True)
+    movie = models.ForeignKey(Movies, on_delete=models.CASCADE)
+    zone = models.ForeignKey(Zones, on_delete=models.CASCADE)
+    # use decimal instead of float to avoid rounding errors
+    # always use decimal for money values
+    price = models.DecimalField(max_digits=4, decimal_places=2) 
+    created_date = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return f'{self.name},{self.price},{self.created_date}'
 class Cart(models.Model):
-    product = models.ForeignKey(Movies, on_delete=models.CASCADE, related_name='carts')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='carts')
     quantity = models.IntegerField()
     created_date = models.DateTimeField(auto_now_add=True)
     def __str__(self):
@@ -94,7 +105,7 @@ class Order(models.Model):
         return f'{self.customer},{self.created_date}'
 class LineItem(models.Model):
     quantity = models.IntegerField()
-    product = models.ForeignKey(Movies, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     created_date = models.DateTimeField(auto_now_add=True)
