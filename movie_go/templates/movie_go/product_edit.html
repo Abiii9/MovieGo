@@ -1,0 +1,12 @@
+{% extends 'movie_go/base.html' %}
+{% block content %}
+    <h1>Product confirmation</h1>
+    <p>Product:
+    <p>movie: {{movie.title}}</p>
+    <form method="POST">
+        {% csrf_token %}
+      {{ form.as_p}}
+      <button type="submit" name="submit">Save</button>
+   </p>
+</form>
+    {% endblock %}

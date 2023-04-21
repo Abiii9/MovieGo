@@ -56,7 +56,7 @@ class Zones(models.Model):
     address = models.TextField()
     cost = models.FloatField()
     def __str__(self):
-        return f'{self.seats}, {self.cost}'
+        return f'{self.seats} seats, cost: {self.cost} GBP'
 
 
 #shopping models

@@ -24,16 +24,6 @@ body{
 .menu a:hover{
     color: rgb(192, 189, 189);
 }
-.footer{
-    margin-top: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color:rgb(233, 222, 222);
-    height: 50px;
-    font-family: 'Varela Round', sans-serif;
-    font-size: 12px;
-}
 .index{
     text-align: center;
     display: flex;
@@ -252,4 +242,51 @@ body{
 }
 .product-details h4{
     margin-bottom: 30px;
+}
+/* zones page */
+.zones-section{
+    font-family: 'Josefin Sans', sans-serif;
+    color: rgb(247, 239, 239);
+}
+
+.zonesgrid{
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.zonesg-items{
+    text-align: center;
+    height: 500px;
+}
+.zonesg-items *{
+    margin-bottom: 10px;
+}
+.zonesg-items img{
+    width: 300px;
+    height: 200px;
+    object-fit: contain;
+    margin: 0 10px;
+
+
+}
+.zonesg-items h4{
+    margin-top: 30px;
+}
+
+.btn-zone{
+    text-decoration: none;
+    background-color: transparent;
+    padding: 8px 20px;
+    border: 2px solid rgb(247, 239, 239);
+    border-radius: 10px;
+    cursor: pointer;
+    color: rgb(247, 239, 239);
+    transition: all .5s;
+}
+
+.btn-zone:hover{
+    color:rgb(134, 130, 130);
+    background-color: rgb(247, 239, 239);;
 }
