@@ -20,7 +20,7 @@
                 <a href="{% url 'movie_go:index'%}">Home</a>
                 <a href="">About</a>
                 {% if user.is_authenticated %}
-                    <a href="{% url 'movie_go:login'%}">LogIn</a>
+                    <a href="{% url 'movie_go:logout'%}">LogOut</a>
                 {% else %}
                     <a href="{% url 'movie_go:login'%}">LogIn</a>
                 {%endif%}
