@@ -54,9 +54,10 @@ class Command(BaseCommand):
         # create some products
         for i in range(10):
             product = Product.objects.create(
-            name = fake.catch_phrase(),
             movie = movie_list[i],
             zone = zone_list[3],
+            booking_date = f'2022-12-0{i+1}',
+            booking_time = '22:01',
             price = int( decimal.Decimal(random.randrange(155,899))/100),
             )
             product.save()

@@ -1,10 +1,30 @@
-from django.shortcuts import render, get_object_or_404
-from movie_go.models import Zones, Movies
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.decorators import login_required
+from movie_go.models import Zones, Movies, Customer, Order, Product, Cart, LineItem
+from movie_go.forms import SignUpForm
+from movie_go.views.basket import Basket
 import ast
+
 genres = ['Animation', 'Comedy', 'Family', 'Adventure', 'Horror','Crime','Thriller','Drama','Fantasy']
 movie_all = Movies.objects.all()
 movie_names = [movie.title for movie in movie_all]
 # Create your views here.
+def signup(request):
+    form = SignUpForm(request.POST)
+    if form.is_valid():
+        user = form.save()
+        user.refresh_from_db()
+        user.customer.first_name = form.cleaned_data.get('first_name')
+        user.customer.last_name = form.cleaned_data.get('last_name')
+        user.customer.address = form.cleaned_data.get('address')
+        user.save()
+        username = form.cleaned_data.get('username')
+        password = form.cleaned_data.get('password1')
+        user = authenticate(username=username, password= password)
+        login(request, user)
+        return redirect('/')
+    return render(request, 'signup.html', {'form': form})
 # index page view
 def index(request):
     zones = Zones.objects.all()
@@ -33,3 +53,29 @@ def zone_detail(request, movie_id):
     movie = Movies.objects.get(id=movie_id)
     zones = Zones.objects.all()
     return render(request, 'movie_go/zone_detail.html',{'movie':movie,'zones': zones})
+
+def purchase(request):
+    if request.user.is_authenticated:
+       user = request.user
+       basket = Basket(request)
+       
+       return render(request, 'movie_go/purchase.html', {'basket': basket, 'user': user})
+    else:
+        return redirect('movie_go:login')
+
+# save order, clear basket and thank customer
+def payment(request):
+    basket = Basket(request)
+    user = request.user
+    customer = get_object_or_404(Customer, user_id=user.id)
+    order = Order.objects.create(customer=customer)
+    order.refresh_from_db()
+    for item in basket:
+        product_item = get_object_or_404(Product, id=item['product_id'])
+        cart = Cart.objects.create(product = product_item, quantity=item['quantity'])
+        cart.refresh_from_db()
+        line_item = LineItem.objects.create(quantity=item['quantity'], product=product_item, cart=cart,  order = order)
+
+    basket.clear()
+    request.session['deleted'] = 'thanks for your purchase'
+    return redirect('movie_go:index' )

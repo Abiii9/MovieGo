@@ -15,6 +15,12 @@ body{
     padding: 30px;
     font-family: 'Varela Round', sans-serif;
 }
+.welcome{
+    font-size: 23px;
+    font-family: 'Varela Round', sans-serif;
+    color: whitesmoke;
+    margin: 10px;
+}
 .menu a{
     padding: 0 20px;
     text-decoration: none;

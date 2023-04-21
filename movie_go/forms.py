@@ -15,11 +15,11 @@ class SignUpForm(UserCreationForm):
         'address', 'first_name', 'last_name', )
 
 class ProductForm (forms.ModelForm):
-    name= forms.CharField(max_length=200)
+    #name= forms.CharField(max_length=200)
 
     class Meta:
         model = Product
-        fields = ('name', 'movie', 'zone',)
+        fields = ('movie', 'zone', 'booking_date', 'booking_time',)
 
 PRODUCT_QUANTITY_CHOICES = [(i, str(i)) for i in range(1, 21)]
 

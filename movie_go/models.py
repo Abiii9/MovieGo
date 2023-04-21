@@ -61,15 +61,17 @@ class Zones(models.Model):
 
 #shopping models
 class Product(models.Model):
-    name = models.CharField(max_length=200, db_index=True)
+    #name = models.CharField(max_length=200, db_index=True)
     movie = models.ForeignKey(Movies, on_delete=models.CASCADE)
     zone = models.ForeignKey(Zones, on_delete=models.CASCADE)
+    booking_date = models.TextField()
+    booking_time = models.TextField()
     # use decimal instead of float to avoid rounding errors
     # always use decimal for money values
     price = models.DecimalField(max_digits=4, decimal_places=2) 
     created_date = models.DateTimeField(auto_now_add=True)
     def __str__(self):
-        return f'{self.name},{self.price},{self.created_date}'
+        return f'{self.booking_time}, {self.booking_date}'
 class Cart(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='carts')
     quantity = models.IntegerField()
