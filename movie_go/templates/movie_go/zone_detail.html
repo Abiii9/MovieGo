@@ -11,7 +11,7 @@
                 <p>Screen Width: {{Zone.screenwidth}}</p>
                 <p>Resolution: {{zone.resolution}}</p>
                 <p>Location: {{zone.address}}</p>
-                <p>Cost: {{zone.cost}}</p>
+                <p>Cost: {{zone.cost}} GBP</p>
                 <a href="{% url 'movie_go:product_new' movie_id=movie.id zone_id=zone.id%}" class="btn-zone">Add to cart 🛒</a>
             </div>
             {%endfor%}

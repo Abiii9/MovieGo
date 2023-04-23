@@ -19,14 +19,12 @@
         
     </div>
     <h2 class="zones-heading">Select zones to watch !!!</h2>
-    <a class="index-a" href="#">view more &rAarr;</a>
     <div class="zones">
         {%for zone in zones%}
             <div class="zone-items">
                 <img src = "{% static 'images/' %}{{zone.image}}">
                 <h4>{{zone.seats}} seats</h4>
                 <p>{{zone.resolution}} resolution</p>
-                <a href="#">view product</a>
             </div>
         {%endfor%}
     </div>
