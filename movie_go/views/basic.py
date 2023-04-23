@@ -1,6 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import login, authenticate
-from django.contrib.auth.decorators import login_required
 from movie_go.models import Zones, Movies, Customer, Order, Product, Cart, LineItem
 from movie_go.forms import SignUpForm
 from movie_go.views.basket import Basket
@@ -80,10 +79,3 @@ def payment(request):
     request.session['deleted'] = 'thanks for your purchase'
     return redirect('movie_go:index' )
 
-@login_required
-def dashboard(request):
-    user = request.user
-    if user.is_authenticated & user.is_staff:
-        return render(request, 'movie_go/dashboard.html')
-    else:
-        return redirect('movie_go:login')
