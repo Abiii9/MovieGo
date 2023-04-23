@@ -80,8 +80,10 @@ def payment(request):
     request.session['deleted'] = 'thanks for your purchase'
     return redirect('movie_go:index' )
 
-# @login_required(login_url='movie_go:login')
-# def dashboard(request):
-#     user = request.user
-#     if user.is_authenticated & user.is_staff:
-#         return render(request, 'movie_go/dashboard.html')
+@login_required
+def dashboard(request):
+    user = request.user
+    if user.is_authenticated & user.is_staff:
+        return render(request, 'movie_go/dashboard.html')
+    else:
+        return redirect('movie_go:login')

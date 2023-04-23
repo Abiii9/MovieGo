@@ -24,5 +24,5 @@ urlpatterns = [
     path('signup/', views.basic.signup, name='signup'),
     path('user_order_list/', views.orders.user_order_list, name='user_order_list'),
     path('user_order/<int:id>/', views.orders.user_order_detail, name= 'user_order_detail'),
-    #path('dashboard/', views.basic.dashboard, name='dashboard'),
+    path('dashboard/', views.basic.dashboard, name='dashboard'),
 ]
