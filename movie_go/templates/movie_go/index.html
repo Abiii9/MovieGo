@@ -6,6 +6,9 @@
 </style>
 {%endblock%}
 {% block content %}
+{% if user.is_authenticated %}
+    <p class="welcome">Welcome back, {{ user.first_name }} 🥳</p>
+{%endif%}
 <section class="index">
     <div class="banner">
         <img src="https://image.tmdb.org/t/p/w500/7G9915LfUQ2lVfwMEEhDsn3kT4B.jpg">

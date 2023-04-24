@@ -1,22 +1,88 @@
 {% extends 'movie_go/base.html' %}
 {%block style%}
 <style>
+.dashboard{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: whitesmoke;
+    font-family:'Varela Round', sans-serif;
+}
+.dashboard h1{
+    margin-bottom: 15px;
+}
 .orders{
+    margin: 20px;
     height: 600px;
     width: 600px;
+}
+.customers{
+    margin: 20px;
+    height: 600px;
+    width: 600px;
+}
+.charts{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.count{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: rgb(58, 57, 57);
+    font-family:'Varela Round', sans-serif;
+}
+
+.orders-count,.customers-count{
+    text-align: center;
+    margin: 20px;
+    background-color: #ffe6f7;
+    height: 200px;
+    width: 600px;
+    border-radius: 40px;
+}
+.orders-count p{
+    font-size:25px;
+}
+.orders-count h5, .orders-count p{
+
+}
+.customers-count{
+    background-color: #e6fff7;
+}
+.customers-count p{
+    font-size:25px;
+}
+.number{
+    font-size: 50px;
 }
 </style>
 {%endblock%}
 {% block content %}
 <div class="dashboard">
-    <div class="basic"></div>
+    <h1>Dashboard</h1>
+    <div class="count">
+        <div class="orders-count">
+            <h5> <span class="number">{{orders_today}}</span> orders today</h5>
+            <p>Total orders: {{order_count}}</p>
+        </div>
+        <div class="customers-count">
+            <h5> <span class="number">{{customers_today}}</span> cusomers signed up today</h5>
+            <p>Total customers: {{customers_count}}</p>
+        </div>
+    </div>
     <div class="charts">
         <div class="orders">
         <canvas id="order-chart">
         </canvas>
         </div>
-        <div class="users">
-        <canvas id="users-chart">
+        <div class="customers">
+        <canvas id="customers-chart">
         </canvas>
         </div>
     </div>
@@ -24,18 +90,61 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 <script type= 'text/javascript'>
-const ctx = document.getElementById('order-chart').getContext('2d');
-console.log(`{{xValues|safe}}`)
-let chart = new Chart(ctx, {
+const ctx1 = document.getElementById('order-chart').getContext('2d');
+const ctx2 = document.getElementById('customers-chart').getContext('2d');
+let chart1 = new Chart(ctx1, {
     type: 'line',
     data: {
-        labels: {{xValues|safe}},
+        labels: {{x1Values|safe}},
         datasets: [{
-            label: 'Numver of Orders per day',
+            label: 'Number of Orders per day',
             backgroundColor:"rgba(245, 235, 240, 0.8)",
             borderColor: "rgba(244, 237, 241, 0.8)",
             fill: false,
-            data: {{yValues|safe}}
+            data: {{y1Values|safe}}
+    }]
+  },
+    options: {
+        plugins: {
+            legend: {
+                display: true,
+                labels: {
+                    color: 'red'
+                }
+            }
+        },
+        responsive: true,
+        scales: {
+                xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Date',
+                            fontSize: 30,
+                            fontColor: "rgba(244, 237, 241, 0.8)",
+                            }
+                        }],
+                yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Number of Orders',
+                            fontSize: 30,
+                            fontColor: "rgba(244, 237, 241, 0.8)",
+                            }
+                        }]
+
+                }
+            }
+});
+let chart2 = new Chart(ctx2, {
+    type: 'line',
+    data: {
+        labels: {{x2Values|safe}},
+        datasets: [{
+            label: 'Count of customers each day',
+            backgroundColor:"rgba(245, 235, 240, 0.8)",
+            borderColor: "rgba(244, 237, 241, 0.8)",
+            fill: false,
+            data: {{y2Values|safe}}
     }]
   },
     options: {
@@ -52,7 +161,7 @@ let chart = new Chart(ctx, {
                 yAxes: [{
                         scaleLabel: {
                             display: true,
-                            labelString: 'Number of Orders',
+                            labelString: 'Number of Customers',
                             fontSize: 30,
                             fontColor: "rgba(244, 237, 241, 0.8)",
                             }

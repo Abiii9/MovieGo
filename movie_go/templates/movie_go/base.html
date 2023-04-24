@@ -33,9 +33,6 @@
                 <a href="{% url 'movie_go:signup'%}">SignUp</a>
             </div>
         </nav>
-        {% if user.is_authenticated %}
-            <p class="welcome">Welcome back, {{ user.first_name }} 🥳</p>
-        {%endif%}
         {% block content %}{% endblock %}
         
     </body>
