@@ -42,6 +42,9 @@ def movies(request,genre = None):
 
 def movie_details(request,id):
     movie = Movies.objects.get(id=id)
+    print(id)
+    print(movie)
+    print('***********')
     companies = eval(str(movie.production_companies))
     languages = eval(str(movie.spoken_languages))
     language_list = [language['name'] for language in languages]
@@ -49,8 +52,10 @@ def movie_details(request,id):
     return render(request, 'movie_go/movie_details.html',{'movie': movie, 'companies':', '.join(companies_list), 'languages': ', '.join(language_list)})
 
 def zone_detail(request, movie_id):
+    print(movie_id)
     movie = Movies.objects.get(id=movie_id)
     zones = Zones.objects.all()
+    print(movie,zones)
     return render(request, 'movie_go/zone_detail.html',{'movie':movie,'zones': zones})
 
 def purchase(request):
