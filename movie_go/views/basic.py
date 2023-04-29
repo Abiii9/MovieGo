@@ -42,9 +42,6 @@ def movies(request,genre = None):
 
 def movie_details(request,id):
     movie = Movies.objects.get(id=id)
-    print(id)
-    print(movie)
-    print('***********')
     companies = eval(str(movie.production_companies))
     languages = eval(str(movie.spoken_languages))
     language_list = [language['name'] for language in languages]
