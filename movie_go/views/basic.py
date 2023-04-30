@@ -8,6 +8,17 @@ import ast
 genres = ['Animation', 'Comedy', 'Family', 'Adventure', 'Horror','Crime','Thriller','Drama','Fantasy']
 movie_all = Movies.objects.all()
 movie_names = [movie.title for movie in movie_all]
+
+#helper functions
+#get from models
+def get_from_model(request,Model,id):
+    if f'{Model}_obj' in request.session:
+        obj = request.session[f'{Model}_obj']
+    else:
+        #fetching values from the  model.
+        obj = Model.objects.get(id=id)
+        request.session[f'{Model}_obj'] = obj 
+    return obj
 # Create your views here.
 def signup(request):
     form = SignUpForm(request.POST)
@@ -41,7 +52,7 @@ def movies(request,genre = None):
     return render(request, 'movie_go/movies.html', {'movies': movies, 'movie_names': movie_names,'genres': genres})
 
 def movie_details(request,id):
-    movie = Movies.objects.get(id=id)
+    movie = get_from_model(request,Movies,id)
     companies = eval(str(movie.production_companies))
     languages = eval(str(movie.spoken_languages))
     language_list = [language['name'] for language in languages]
@@ -50,7 +61,7 @@ def movie_details(request,id):
 
 def zone_detail(request, movie_id):
     print(movie_id)
-    movie = Movies.objects.get(id=movie_id)
+    movie = get_from_model(Movies,id)
     zones = Zones.objects.all()
     print(movie,zones)
     return render(request, 'movie_go/zone_detail.html',{'movie':movie,'zones': zones})
