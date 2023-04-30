@@ -22,15 +22,15 @@
                 {% if user.is_authenticated %}
                     <div class="dropdown-parent">Account
                         <div class="dropdown-items">
-                            <a href="{% url 'movie_go:user_order_list'%}">Orders</a>
+                            <a href="{% url 'movie_go:user_order_list'%}" class="orders_btn">Orders</a>
                             <a href="{% url 'movie_go:logout'%}">LogOut</a>
                         </div>
                     </div>
                     
                 {% else %}
-                    <a href="{% url 'movie_go:login'%}">LogIn</a>
+                    <a href="{% url 'movie_go:login'%}" class="login_btn">LogIn</a>
                 {%endif%}
-                <a href="{% url 'movie_go:signup'%}">SignUp</a>
+                <a href="{% url 'movie_go:signup'%}" class="signup_btn">SignUp</a>
             </div>
         </nav>
         {% block content %}{% endblock %}

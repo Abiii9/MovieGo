@@ -16,13 +16,13 @@
               <form action="{% url 'movie_go:basket_add' product.id|add:'0' %}" method="post">
                 {{ item.update_quantity_form.quantity }}
                 {{ item.update_quantity_form.override }}
-                <input type="submit" value="Update">
+                <input type="submit" value="Update" name="update">
                 {% csrf_token %}
               </form>
             </td>
             <td>
               <form action="{% url 'movie_go:basket_remove' product.id|add:'0' %}" method="post">
-                <input type="submit" value="Remove">
+                <input type="submit" value="Remove" name="remove">
                 {% csrf_token %}
               </form>
             </td>
@@ -41,6 +41,6 @@
     <a href="{% url 'movie_go:movies' %}" class="button
     light">Continue shopping</a>
   </p>
-  <a href="{% url 'movie_go:purchase' %}">Purchase</a>
+  <a href="{% url 'movie_go:purchase' %}" class="purchase_btn">Purchase</a>
    
  {% endblock %}

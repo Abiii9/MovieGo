@@ -23,7 +23,6 @@ class Basket(object):
         Iterate over the items in the basket and get the products
         from the database.
         """
-        print(f'basket: { self.basket }')
         product_ids = self.basket.keys()
         # get the product objects and add them to the basket
         products = Product.objects.filter(id__in=product_ids)

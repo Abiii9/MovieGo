@@ -64,7 +64,6 @@ def user_fills_form(context):
 
 @then(u'it succeeds')
 def product_added(context):
-    print(context.browser.page_source)
     assert '67.0' in context.browser.page_source
 
 

@@ -10,7 +10,7 @@
     <form action="{% url 'movie_go:basket_add' product.id %}" method="post">
       {{ basket_product_form }}
       {% csrf_token %}
-      <input type="submit" value="Add to Basket">
+      <input type="submit" name="submit" value="Add to Basket">
     </form>
        </p>
    <p><a href="{% url 'movie_go:product_delete' id=product.id %}">Delete the product</a></p>
