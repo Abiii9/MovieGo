@@ -17,20 +17,22 @@
         <nav class="navbar">
             <div class="logo"><h2>MovieGo</h2></div>
             <div class="menu">
+                {% if user.is_staff %}
+                    <a href="{% url 'movie_go:dashboard'%}">dashboard</a>
+                {% endif %}
                 <a href="{% url 'movie_go:index'%}">Home</a>
                 <a href="">About</a>
                 {% if user.is_authenticated %}
                     <div class="dropdown-parent">Account
                         <div class="dropdown-items">
                             <a href="{% url 'movie_go:user_order_list'%}" class="orders_btn">Orders</a>
-                            <a href="{% url 'movie_go:logout'%}">LogOut</a>
+                            <a href="{% url 'movie_go:logout'%}" class="logout_btn">LogOut</a>
                         </div>
                     </div>
-                    
                 {% else %}
                     <a href="{% url 'movie_go:login'%}" class="login_btn">LogIn</a>
+                    <a href="{% url 'movie_go:signup'%}" class="signup_btn">SignUp</a>
                 {%endif%}
-                <a href="{% url 'movie_go:signup'%}" class="signup_btn">SignUp</a>
             </div>
         </nav>
         {% block content %}{% endblock %}

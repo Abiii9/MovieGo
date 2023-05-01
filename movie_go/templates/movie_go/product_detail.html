@@ -1,17 +1,19 @@
 {% extends 'movie_go/base.html' %}
 {% block content %}
-    <h1>Acme Shopping: Product Details</h1>
+<div class="info">
+    <h1>Product Details</h1>
     
     <p>Product {{ product.id }}: <a href="{% url 'movie_go:product_edit' id=product.id %}">Edit</a>
-      This is product {{ product.name }} which costs
+      This is product {{ product.id }} which costs
       {{product.price}}. The product was added on: {{ product.created_date }} 
    </p>
    <p>
     <form action="{% url 'movie_go:basket_add' product.id %}" method="post">
       {{ basket_product_form }}
       {% csrf_token %}
-      <input type="submit" name="submit" value="Add to Basket">
+      <input type="submit" name="submit" value="Add to Basket 🛒" class="basket-btn">
     </form>
        </p>
    <p><a href="{% url 'movie_go:product_delete' id=product.id %}">Delete the product</a></p>
+</div>
     {% endblock %}

@@ -64,8 +64,8 @@ class Product(models.Model):
     #name = models.CharField(max_length=200, db_index=True)
     movie = models.ForeignKey(Movies, on_delete=models.CASCADE)
     zone = models.ForeignKey(Zones, on_delete=models.CASCADE)
-    booking_date = models.TextField()
-    booking_time = models.TextField()
+    booking_date = models.CharField(max_length=100)
+    booking_time = models.CharField(max_length=100)
     # use decimal instead of float to avoid rounding errors
     # always use decimal for money values
     price = models.DecimalField(max_digits=4, decimal_places=2) 

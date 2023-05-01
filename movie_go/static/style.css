@@ -45,7 +45,7 @@ body{
     color: rgb(58, 57, 57);
     height: 60px;
     top: 50px;
-    right: 110px;
+    right: 10px;
     border-radius: 5px;
 }
 .dropdown-items a{
@@ -207,6 +207,10 @@ body{
 .search{
     width: 70px;
     height:30px;
+    color: whitesmoke;
+    background: transparent;
+    border: 2px solid whitesmoke;
+    font-family: 'Josefin Sans', sans-serif;
     margin-left: 20px;
     border-radius: 20px;
     cursor: pointer;
@@ -214,8 +218,8 @@ body{
 }
 
 .search:hover{
-    background-color: rgb(58, 57, 57);
-    color: whitesmoke;
+    background-color: whitesmoke;
+    color: rgb(58, 57, 57);
 }
 .genre-list{
     min-width: 1000px;
@@ -325,5 +329,111 @@ body{
 
 .btn-zone:hover{
     color:rgb(134, 130, 130);
-    background-color: rgb(247, 239, 239);;
+    background-color: rgb(247, 239, 239);
+}
+/*input block styles*/
+.input-block{
+    color: rgb(58, 57, 57);
+    font-family: 'Varela Round', sans-serif;
+    height: 500px;
+    width: 550px;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+.input-block *{
+    margin-left: 20px;
+}
+.input-block > *{
+    margin-top: 20px;
+}
+.login-form *{
+    margin-top: 20px;
+}
+
+.login-form input{
+    border-radius: 10px;
+    height: 30px;
+    width: 200px;
+}
+.LoginBtn{
+    font-family: 'Varela Round', sans-serif;
+    cursor: pointer;
+    background-color: transparent;
+    text-decoration: none;
+    margin-top: 40px;
+    margin-left: 100px;
+    transition: all .3s;
+}
+.LoginBtn:hover,.signupBtn:hover{
+    background-color: rgb(58, 57, 57);;
+    color: whitesmoke;
+}
+
+/*Sign up page*/
+
+.signup-box{
+    height: 600px;
+    width: 600px;
+    margin: 0 auto;
+    color: rgb(58, 57, 57);
+    font-family: 'Varela Round', sans-serif;
+    background-color: whitesmoke;
+    border-radius: 8px;
+}
+.signup-box > *{
+    margin-left: 20px;
+}
+li{
+    list-style: none;
+}
+.signup-box label{
+    margin: 20px 0 0 20px;
+}
+.signup-box input{
+    margin: 20px 0 0 20px;
+    border-radius: 8px;
+    height: 25px;
+}
+.signup-box small{
+    margin-left: 20px;
+}
+.signupBtn{
+    cursor: pointer;
+    height: 40px;
+    width: 150px;
+    font-family: 'Varela Round', sans-serif;
+    transition: all .3s;
+}
+.info{
+    margin: 50px;
+    color: whitesmoke;
+    font-family: 'Varela Round', sans-serif;
+}
+.info > *{
+    margin-bottom: 10px;
+}
+.info a{
+    color: whitesmoke;
+    text-decoration: none;
+    text-decoration-line: underline;
+}
+
+.basket-btn{
+    margin-left: 20px;
+    width: 150px;
+    height: 30px;
+    background: transparent;
+    border: 2px solid whitesmoke;
+    color: whitesmoke;
+    font-family: 'Varela Round', sans-serif;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.basket-btn:hover{
+    background-color: whitesmoke;
+    color: rgb(58, 57, 57);
 }

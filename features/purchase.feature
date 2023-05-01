@@ -1,4 +1,3 @@
-@wip
 Feature: purchasign a product
 
 Scenario: user has added product to basket

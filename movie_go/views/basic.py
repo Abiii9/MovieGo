@@ -11,14 +11,10 @@ movie_names = [movie.title for movie in movie_all]
 
 #helper functions
 #get from models
-def get_from_model(request,Model,id):
-    if f'{Model}_obj' in request.session:
-        obj = request.session[f'{Model}_obj']
-    else:
-        #fetching values from the  model.
-        obj = Model.objects.get(id=id)
-        request.session[f'{Model}_obj'] = obj 
+def get_from_model(Model,id):
+    obj = Model.objects.get(id=id)
     return obj
+
 # Create your views here.
 def signup(request):
     form = SignUpForm(request.POST)
@@ -38,21 +34,21 @@ def signup(request):
 # index page view
 def index(request):
     zones = Zones.objects.all()
-    movies = Movies.objects.filter(votes__vote_average__gte=8).order_by('votes__vote_average')[:3]
+    movies = movie_all.filter(votes__vote_average__gte=8).order_by('votes__vote_average')[:3]
     return render(request, 'movie_go/index.html', {'zones': zones, 'movies': movies})
 
 def movies(request,genre = None):
-    movies = Movies.objects.filter(votes__vote_average__gte=8).order_by('votes__vote_average')[:12]
+    movies = movie_all.filter(votes__vote_average__gte=8).order_by('votes__vote_average')[:12]
     if request.method == 'POST':
         movie_name = request.POST.get('movie').strip()
         if movie_name != '':
-            movies = Movies.objects.filter(title = movie_name)
+            movies = movie_all.filter(title=movie_name)
     if genre:
-        movies = Movies.objects.filter(genres__contains=genre)
+        movies = movie_all.filter(genres__contains=genre)
     return render(request, 'movie_go/movies.html', {'movies': movies, 'movie_names': movie_names,'genres': genres})
 
 def movie_details(request,id):
-    movie = get_from_model(request,Movies,id)
+    movie = get_from_model(Movies,id)
     companies = eval(str(movie.production_companies))
     languages = eval(str(movie.spoken_languages))
     language_list = [language['name'] for language in languages]
@@ -60,8 +56,7 @@ def movie_details(request,id):
     return render(request, 'movie_go/movie_details.html',{'movie': movie, 'companies':', '.join(companies_list), 'languages': ', '.join(language_list)})
 
 def zone_detail(request, movie_id):
-    print(movie_id)
-    movie = get_from_model(Movies,id)
+    movie = get_from_model(Movies,movie_id)
     zones = Zones.objects.all()
     print(movie,zones)
     return render(request, 'movie_go/zone_detail.html',{'movie':movie,'zones': zones})

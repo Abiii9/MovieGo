@@ -5,7 +5,7 @@ from datetime import datetime
 from collections import Counter
 def chart_data(Model):
     op = []
-    total_data = Model.objects.values_list('created_date')
+    total_data = Model.objects.values_list('created_date').order_by('-created_date')
     for date in total_data:
         op.append(str(date[0])[:10])
     return dict(Counter(op))
