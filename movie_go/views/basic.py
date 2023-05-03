@@ -60,7 +60,6 @@ def movie_details(request,id):
 def zone_detail(request, movie_id):
     movie = get_from_model(Movies,movie_id)
     zones = Zones.objects.all()
-    print(movie,zones)
     return render(request, 'movie_go/zone_detail.html',{'movie':movie,'zones': zones})
 
 def purchase(request):

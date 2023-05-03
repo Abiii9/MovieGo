@@ -15,7 +15,7 @@ django.setup()
 # Use the chrome driver specific to your version of Chrome browser and put it in ./driver directory
 # the driver needs to have the full file path, so use one of these options to pass full path to driver
 # swap - uncomment one CHROME_DRIVER line for the other if you get an error about 'context' not found
-# CHROME_DRIVER = os.path.join(os.path.join(os.path.dirname(__file__), 'driver'), 'chromedriver')
+#CHROME_DRIVER = os.path.join(os.path.join(os.path.dirname(__file__), 'driver'), 'chromedriver')
 current_dir = os.path.dirname(os.path.realpath(__file__))
 CHROME_DRIVER = os.path.join(current_dir, 'driver/chromedriver')
 chrome_options = Options()
