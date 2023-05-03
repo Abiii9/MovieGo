@@ -5,6 +5,7 @@ from movie_go.views import basic, products, basket, orders, dashboard
 app_name = 'movie_go'
 urlpatterns = [
     path('', views.basic.index, name='index'),
+    path('about/',views.basic.about, name='about'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('movies/', views.basic.movies, name='movies'),
     path('movies/<str:genre>', views.basic.movies, name='movies'),

@@ -37,6 +37,8 @@ def index(request):
     movies = movie_all.filter(votes__vote_average__gte=8).order_by('votes__vote_average')[:3]
     return render(request, 'movie_go/index.html', {'zones': zones, 'movies': movies})
 
+def about(request):
+    return render(request, 'movie_go/about.html')
 def movies(request,genre = None):
     movies = movie_all.filter(votes__vote_average__gte=8).order_by('votes__vote_average')[:12]
     if request.method == 'POST':
@@ -87,3 +89,9 @@ def payment(request):
     request.session['deleted'] = 'thanks for your purchase'
     return redirect('movie_go:index' )
 
+#function that gets called incase of a 404 page not found error.
+def error_404_view(request, exception):
+    return render(request, 'movie_go/404.html', status=404)
+#function that gets called incase of a 500 internal server error.
+def error_500_view(request):
+    return render(request, 'movie_go/500.html', status=500)

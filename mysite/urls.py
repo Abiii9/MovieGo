@@ -21,3 +21,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('movie_go.urls',  namespace='movie_go')),
 ]
+
+#handling the 404 error, calling the corresponding view function incase of error.
+handler404 = 'movie_go.views.basic.error_404_view'
+#handling the 500 error, calling the corresponding view function incase of error.
+handler500 = 'movie_go.views.basic.error_500_view'

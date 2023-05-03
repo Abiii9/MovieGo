@@ -1,4 +1,3 @@
-@wip
 Feature: logging out user
 
 Scenario: user wants to logout of the application

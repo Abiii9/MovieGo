@@ -74,19 +74,17 @@ body{
 .banner{
     margin:0 auto;
     height:600px;
-    width: 1300px;
+    width: 1100px;
     background-color: rgb(233, 222, 222);
-    /*clip-path: polygon(5% 8%, 94% 8%, 94% 94%, 5% 95%);*/
     border-radius: 50px;
     display: flex;
     flex-direction: row;
     font-family: 'Varela Round', sans-serif;
     color: rgb(22, 22, 22);
     justify-content: space-around;
-/*box-shadow: 0 1px 10px rgba(0, 0, 0, 0.75), 0 -1px 10px rgba(0,0,0,0.75);*/
 }
 .banner img{
-    width: 900px;
+    width: 500px;
     filter: brightness(50%);
 }
 .banner-text{
@@ -94,7 +92,7 @@ body{
     align-self: center;
 }
 .banner-text h2{
-    margin: 0 600px 0 auto;
+    margin-right: 20px;
     margin-bottom: 20px;
 }
 .banner-text p{
@@ -338,7 +336,6 @@ body{
     height: 500px;
     width: 550px;
     background-color: whitesmoke;
-    border-radius: 10px;
     margin: 0 auto;
     margin-top: 50px;
 }
@@ -353,7 +350,6 @@ body{
 }
 
 .login-form input{
-    border-radius: 10px;
     height: 30px;
     width: 200px;
 }
@@ -363,7 +359,7 @@ body{
     background-color: transparent;
     text-decoration: none;
     margin-top: 40px;
-    margin-left: 100px;
+    margin-left: 40px;
     transition: all .3s;
 }
 .LoginBtn:hover,.signupBtn:hover{
@@ -380,7 +376,6 @@ body{
     color: rgb(58, 57, 57);
     font-family: 'Varela Round', sans-serif;
     background-color: whitesmoke;
-    border-radius: 8px;
 }
 .signup-box > *{
     margin-left: 20px;
@@ -393,7 +388,6 @@ li{
 }
 .signup-box input{
     margin: 20px 0 0 20px;
-    border-radius: 8px;
     height: 25px;
 }
 .signup-box small{
@@ -414,7 +408,7 @@ li{
 .info > *{
     margin-bottom: 10px;
 }
-.info a{
+.info a, .about a{
     color: whitesmoke;
     text-decoration: none;
     text-decoration-line: underline;
@@ -428,7 +422,6 @@ li{
     border: 2px solid whitesmoke;
     color: whitesmoke;
     font-family: 'Varela Round', sans-serif;
-    border-radius: 5px;
     cursor: pointer;
     transition: all .3s;
 }
@@ -436,4 +429,17 @@ li{
 .basket-btn:hover{
     background-color: whitesmoke;
     color: rgb(58, 57, 57);
+}
+/*about page*/
+.about{
+    margin: 0 auto;
+    margin-top: 100px;
+    height: 500px;
+    width: 800px;
+    color: whitesmoke;
+    font-family: 'Varela Round', sans-serif;
+}
+
+.about *{
+    margin: 10px;
 }

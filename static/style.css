@@ -7,6 +7,9 @@
 body{
     background-color: rgb(58, 57, 57);
 }
+.credit{
+    color: whitesmoke;
+}
 .navbar {
     color: whitesmoke;
     display: flex;
@@ -27,8 +30,36 @@ body{
     color: whitesmoke;
     transition: all .2s;
 }
+
 .menu a:hover{
     color: rgb(192, 189, 189);
+}
+.dropdown-parent{
+    display: inline-block;
+    cursor: pointer;
+}
+.dropdown-items{
+    display: none;
+    position: absolute;
+    background-color: whitesmoke;
+    color: rgb(58, 57, 57);
+    height: 60px;
+    top: 50px;
+    right: 10px;
+    border-radius: 5px;
+}
+.dropdown-items a{
+    margin-top: 10px;
+    color: rgb(58, 57, 57);
+}
+.dropdown-items :not(:first-child){
+    margin-bottom: 10px;
+}
+.dropdown-parent:hover .dropdown-items{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .index{
     text-align: center;
@@ -43,19 +74,17 @@ body{
 .banner{
     margin:0 auto;
     height:600px;
-    width: 1300px;
+    width: 1100px;
     background-color: rgb(233, 222, 222);
-    /*clip-path: polygon(5% 8%, 94% 8%, 94% 94%, 5% 95%);*/
     border-radius: 50px;
     display: flex;
     flex-direction: row;
     font-family: 'Varela Round', sans-serif;
     color: rgb(22, 22, 22);
     justify-content: space-around;
-/*box-shadow: 0 1px 10px rgba(0, 0, 0, 0.75), 0 -1px 10px rgba(0,0,0,0.75);*/
 }
 .banner img{
-    width: 900px;
+    width: 500px;
     filter: brightness(50%);
 }
 .banner-text{
@@ -63,7 +92,7 @@ body{
     align-self: center;
 }
 .banner-text h2{
-    margin: 0 600px 0 auto;
+    margin-right: 20px;
     margin-bottom: 20px;
 }
 .banner-text p{
@@ -106,9 +135,8 @@ body{
     height: 200px;
     object-fit: contain;
     margin: 0 10px;
-    transition: all .3s;
 }
-.zone-items img:hover, .movie-items img:hover{
+.movie-items img:hover{
     transform: scale(1.2);
     cursor: pointer;
 }
@@ -177,6 +205,10 @@ body{
 .search{
     width: 70px;
     height:30px;
+    color: whitesmoke;
+    background: transparent;
+    border: 2px solid whitesmoke;
+    font-family: 'Josefin Sans', sans-serif;
     margin-left: 20px;
     border-radius: 20px;
     cursor: pointer;
@@ -184,8 +216,8 @@ body{
 }
 
 .search:hover{
-    background-color: rgb(58, 57, 57);
-    color: whitesmoke;
+    background-color: whitesmoke;
+    color: rgb(58, 57, 57);
 }
 .genre-list{
     min-width: 1000px;
@@ -253,6 +285,7 @@ body{
 .zones-section{
     font-family: 'Josefin Sans', sans-serif;
     color: rgb(247, 239, 239);
+    margin:30px;
 }
 
 .zonesgrid{
@@ -294,5 +327,119 @@ body{
 
 .btn-zone:hover{
     color:rgb(134, 130, 130);
-    background-color: rgb(247, 239, 239);;
+    background-color: rgb(247, 239, 239);
+}
+/*input block styles*/
+.input-block{
+    color: rgb(58, 57, 57);
+    font-family: 'Varela Round', sans-serif;
+    height: 500px;
+    width: 550px;
+    background-color: whitesmoke;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+.input-block *{
+    margin-left: 20px;
+}
+.input-block > *{
+    margin-top: 20px;
+}
+.login-form *{
+    margin-top: 20px;
+}
+
+.login-form input{
+    height: 30px;
+    width: 200px;
+}
+.LoginBtn{
+    font-family: 'Varela Round', sans-serif;
+    cursor: pointer;
+    background-color: transparent;
+    text-decoration: none;
+    margin-top: 40px;
+    margin-left: 40px;
+    transition: all .3s;
+}
+.LoginBtn:hover,.signupBtn:hover{
+    background-color: rgb(58, 57, 57);;
+    color: whitesmoke;
+}
+
+/*Sign up page*/
+
+.signup-box{
+    height: 600px;
+    width: 600px;
+    margin: 0 auto;
+    color: rgb(58, 57, 57);
+    font-family: 'Varela Round', sans-serif;
+    background-color: whitesmoke;
+}
+.signup-box > *{
+    margin-left: 20px;
+}
+li{
+    list-style: none;
+}
+.signup-box label{
+    margin: 20px 0 0 20px;
+}
+.signup-box input{
+    margin: 20px 0 0 20px;
+    height: 25px;
+}
+.signup-box small{
+    margin-left: 20px;
+}
+.signupBtn{
+    cursor: pointer;
+    height: 40px;
+    width: 150px;
+    font-family: 'Varela Round', sans-serif;
+    transition: all .3s;
+}
+.info{
+    margin: 50px;
+    color: whitesmoke;
+    font-family: 'Varela Round', sans-serif;
+}
+.info > *{
+    margin-bottom: 10px;
+}
+.info a, .about a{
+    color: whitesmoke;
+    text-decoration: none;
+    text-decoration-line: underline;
+}
+
+.basket-btn{
+    margin-left: 20px;
+    width: 150px;
+    height: 30px;
+    background: transparent;
+    border: 2px solid whitesmoke;
+    color: whitesmoke;
+    font-family: 'Varela Round', sans-serif;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.basket-btn:hover{
+    background-color: whitesmoke;
+    color: rgb(58, 57, 57);
+}
+/*about page*/
+.about{
+    margin: 0 auto;
+    margin-top: 100px;
+    height: 500px;
+    width: 800px;
+    color: whitesmoke;
+    font-family: 'Varela Round', sans-serif;
+}
+
+.about *{
+    margin: 10px;
 }

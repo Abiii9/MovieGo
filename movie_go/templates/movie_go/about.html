@@ -1,0 +1,31 @@
+{% extends "movie_go/base.html" %}
+{% load static %}
+{% block content %}
+<div class="about">
+    <p>This website has been built as a part of a student assignment. The dataset for the movies has been taken from 
+        <a href="https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset?select=movies_metadata.csv">Kaggle</a>
+        The images for all the movies have been taken from the <a href="https://www.themoviedb.org/documentation/api">TMDB API </a>
+    </p>
+    <p>This website was built using Django, which is an open-source framework for building web based applications in Python. <br>
+    Here are some of the features of this application.</p>
+    <ul>
+        <li>
+            1. A movies page that lists out the top-rated movies and allows users to search for a movie based on name and genre.
+        </li>
+        <li>
+            2. A zone details page that lists the zones available to watch the selected movie.
+        </li>
+        <li>
+            3. An extensive authentication system that allows the users to signup, login and logout securely.
+        </li>
+        <li>
+            4. A dashboard for staff users to monitor the orders and customers count everyday.
+        </li>
+        <li>
+            5. An orders page for the customers to view the orders they have made.
+        </li>
+    </ul>
+    <p>Built by: Abinaya Elangovan</p>
+    
+</div>
+{% endblock%}
