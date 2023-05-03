@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from movie_go.models import Zones, Movies, Customer, Order, Product, Cart, LineItem
 from datetime import datetime
 from collections import Counter
+from django.core.exceptions import PermissionDenied
 def chart_data(Model):
     op = []
     total_data = Model.objects.values_list('created_date').order_by('-created_date')
@@ -45,5 +46,7 @@ def dashboard(request):
         print(orders_today)
         customers_today = data_today(Customer)
         return render(request, 'movie_go/dashboard.html',{'x1Values': listx1,'y1Values': listy1,'x2Values': listx2,'y2Values': listy2, 'order_count': order_count, 'customers_count': customers_count, 'orders_today': orders_today, 'customers_today': customers_today})
+    elif not user.is_staff & user.is_authenticated:
+        raise PermissionDenied()
     else:
         return redirect('movie_go:login')

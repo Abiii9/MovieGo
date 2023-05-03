@@ -26,3 +26,5 @@ urlpatterns = [
 handler404 = 'movie_go.views.basic.error_404_view'
 #handling the 500 error, calling the corresponding view function incase of error.
 handler500 = 'movie_go.views.basic.error_500_view'
+#handling the 403 error, calling the corresponding view function incase of error.
+handler403 = 'movie_go.views.basic.error_403_view'

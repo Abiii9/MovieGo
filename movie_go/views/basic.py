@@ -94,3 +94,5 @@ def error_404_view(request, exception):
 #function that gets called incase of a 500 internal server error.
 def error_500_view(request):
     return render(request, 'movie_go/500.html', status=500)
+def error_403_view(request, exception):
+    return render(request, 'movie_go/403.html', status=403)

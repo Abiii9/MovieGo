@@ -443,3 +443,13 @@ li{
 .about *{
     margin: 10px;
 }
+
+/*error pages*/
+
+.error{
+    text-align: center;
+}
+.error img{
+    height: 300px;
+    width: 300px;
+}
