@@ -86,8 +86,12 @@ def payment(request):
 
     basket.clear()
     request.session['deleted'] = 'thanks for your purchase'
-    return redirect('movie_go:index' )
+    return redirect('movie_go:success', id=order.id )
 
+def success(request,id):
+    order = Order.objects.get(id=id)
+    lineitems = LineItem.objects.filter(order=order)
+    return render(request, 'movie_go/success.html', {'order': order, 'lineitems': lineitems})
 #function that gets called incase of a 404 page not found error.
 def error_404_view(request, exception):
     return render(request, 'movie_go/404.html', status=404)

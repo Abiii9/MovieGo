@@ -26,4 +26,5 @@ urlpatterns = [
     path('user_order_list/', views.orders.user_order_list, name='user_order_list'),
     path('user_order/<int:id>/', views.orders.user_order_detail, name= 'user_order_detail'),
     path('dashboard/', views.dashboard.dashboard, name='dashboard'),
+    path('success/<int:id>', views.basic.success, name='success'),
 ]

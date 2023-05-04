@@ -7,17 +7,20 @@ from django.test.testcases import TestCase
 from django.test.runner import DiscoverRunner
 from django.test.testcases import LiveServerTestCase
 # from django.contrib.staticfiles.testing import StaticLiveServerTestCase
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from django.conf import settings
+
 os.environ["DJANGO_SETTINGS_MODULE"] = "mysite.settings"
 django.setup()
 
 # Use the chrome driver specific to your version of Chrome browser and put it in ./driver directory
 # the driver needs to have the full file path, so use one of these options to pass full path to driver
 # swap - uncomment one CHROME_DRIVER line for the other if you get an error about 'context' not found
-#CHROME_DRIVER = os.path.join(os.path.join(os.path.dirname(__file__), 'driver'), 'chromedriver')
+#CHROME_DRIVER = os.path.join(os.path.join(os.path.dirname(__file__), 'drivers'), 'chromedriver')
 current_dir = os.path.dirname(os.path.realpath(__file__))
-CHROME_DRIVER = os.path.join(current_dir, 'driver/chromedriver')
+CHROME_DRIVER = os.path.join(current_dir, 'drivers/chromedriver')
 chrome_options = Options()
 # comment out the line below if you want to see the browser launch for tests
 # possibly add time.sleep() if required
@@ -26,12 +29,14 @@ chrome_options.add_argument('--no-proxy-server')
 chrome_options.add_argument("--proxy-server='direct://'")
 chrome_options.add_argument("--proxy-bypass-list=*")
 
+chromedriverinstall = ChromeDriverManager("112.0.5615.49").install()
 # add our browser to the context object so that it can be used in all steps
 def before_all(context):
     use_fixture(django_test_runner, context)
-    browser = webdriver.Chrome(options=chrome_options, executable_path=CHROME_DRIVER)
+    browser = webdriver.Chrome(options=chrome_options, executable_path=chromedriverinstall )
     browser.set_page_load_timeout(time_to_wait=200)
-    context.browser = webdriver.Chrome()
+    #context.browser = webdriver.Chrome()
+    context.browser = browser
 
 def before_scenario(context, scenario):
     context.test = TestCase()

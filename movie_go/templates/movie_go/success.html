@@ -1,0 +1,20 @@
+  {% extends 'movie_go/base.html' %}
+  {% block content %}
+<div class="info">
+    <h1>Congratulations! Your order has been placed</h1>
+    <h3>Order details</h3>
+    <p>
+ The order was placed on: {{ order.created_date }} 
+   </p>
+  <p>The order includes these items:</p>
+  {% for lineitem in lineitems %}
+  <h4>{{lineitem.id}}</h4>
+  <p>
+   Quantity: {{ lineitem.quantity}}
+  </p> <br>
+  <p>You're watching {{ lineitem.product.movie.title}} at {{ lineitem.product.zone.address}}</p> <br>
+  <p>Date and Time: {{lineitem.product.booking_date}}, {{lineitem.product.booking_time}}</p>
+  
+  {% endfor %}
+</div>
+{% endblock %}
