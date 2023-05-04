@@ -1,7 +1,6 @@
 {% extends 'movie_go/base.html' %}
 {% block content %}
-    <h1>Acme Shopping: Your Basket</h1>
-    
+<div class="info">
 <h2>You have these in your basket:</h2>
  <table>
   {% for item in basket %}
@@ -11,36 +10,40 @@
               <a href="{% url 'movie_go:product_detail' id=product.id|add:'0' %}">product
               </a>
             </td>
-            <td>{{ product.name }}</td>
             <td>
               <form action="{% url 'movie_go:basket_add' product.id|add:'0' %}" method="post">
                 {{ item.update_quantity_form.quantity }}
                 {{ item.update_quantity_form.override }}
-                <input type="submit" value="Update" name="update">
+                <input type="submit" value="Update" name="update" class="basket-btn">
                 {% csrf_token %}
               </form>
             </td>
             <td>
               <form action="{% url 'movie_go:basket_remove' product.id|add:'0' %}" method="post">
-                <input type="submit" value="Remove" name="remove">
+                <input type="submit" value="Remove" name="remove" class="basket-btn">
                 {% csrf_token %}
               </form>
             </td>
-            <td class="num">${{ item.price }}</td>
-            <td class="num">${{ item.total_price }}</td>
+            <td class="num">{{ item.price }} GBP * {{item.quantity}}</td>
           </tr>
         {% endwith %}
       {% endfor %}
+      {% if basket.get_total_price != 0 %}
       <tr class="total">
         <td>Total</td>
-        <td colspan="4"></td>
-        <td class="num">${{ basket.get_total_price }}</td>
+        <td colspan="2"></td>
+        <td class="num">{{ basket.get_total_price }} GBP</td>
       </tr>
+      {% endif %}
   </table>
   <p class="text-right">
+    {% if basket.get_total_price != 0 %}
+    <a href="{% url 'movie_go:purchase' %}" class="purchase_btn">Purchase</a> <br>
+    {% else %}
+    <p>Cart is empty</p>
+    {%endif%}
     <a href="{% url 'movie_go:movies' %}" class="button
     light">Continue shopping</a>
   </p>
-  <a href="{% url 'movie_go:purchase' %}" class="purchase_btn">Purchase</a>
-   
+</div>  
  {% endblock %}

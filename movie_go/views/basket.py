@@ -92,10 +92,13 @@ def basket_add(request, product_id):
 
 @require_POST
 def basket_remove(request, product_id):
-    basket = Basket(request)
-    product = get_object_or_404(Product, id=product_id)
-    basket.remove(product)
-    return redirect('movie_go:basket_detail')
+    if product_id != 0:
+        basket = Basket(request)
+        product = get_object_or_404(Product, id=product_id)
+        basket.remove(product)
+        return redirect('movie_go:basket_detail')
+    else:
+        return redirect('movie_go:movies')
 
 def basket_detail(request):
     basket = Basket(request)

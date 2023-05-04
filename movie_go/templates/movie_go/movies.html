@@ -18,6 +18,9 @@
                 <a href="{% url 'movie_go:movies' genre %}" class="genre-a">{{genre}}</a>
             {%endfor%}
         </div>
+        {% if no_movies %}
+            <p>{{no_movies}}</p>
+        {% else %}
         <div class="moviesgrid">
             {%for movie in movies%}
             <div class="movieg-items">
@@ -27,6 +30,7 @@
             </div>
             {%endfor%}
         </div>
+        {% endif %}
     </section>
     <p class="credit">All the movie images are from : 'https://www.themoviedb.org/'</p>
 {%endblock%}

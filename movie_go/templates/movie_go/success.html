@@ -12,8 +12,9 @@
   <p>
    Quantity: {{ lineitem.quantity}}
   </p> <br>
-  <p>You're watching {{ lineitem.product.movie.title}} at {{ lineitem.product.zone.address}}</p> <br>
-  <p>Date and Time: {{lineitem.product.booking_date}}, {{lineitem.product.booking_time}}</p>
+  <p>You're watching {{ lineitem.product.movie.title}}</p> <br>
+  <p>Date and Time: {{lineitem.product.booking_date}}, {{lineitem.product.booking_time}}</p> <br>
+  <p>Venue: {{ lineitem.product.zone.address}}</p>
   
   {% endfor %}
 </div>

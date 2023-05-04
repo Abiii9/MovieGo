@@ -10,6 +10,8 @@ def product_list(request):
 def product_detail(request, id=None):
     if id:
         product = get_object_or_404(Product, id=id)
+    else:
+        product = None
     basket_product_form = BasketAddProductForm()
     return render(request, 'movie_go/product_detail.html', {'product' : product, 'basket_product_form': basket_product_form })
 
@@ -44,6 +46,6 @@ def product_edit(request, id):
 def product_delete(request, id):
     product = get_object_or_404(Product, id=id)
     deleted = request.session.get('deleted', 'empty')
-    request.session['deleted'] = product.name
+    request.session['deleted'] = product.id
     product.delete()
-    return redirect('movie_go:product_list')
+    return redirect('movie_go:movies')

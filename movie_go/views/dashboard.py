@@ -49,3 +49,4 @@ def dashboard(request):
         raise PermissionDenied()
     else:
         return redirect('movie_go:login')
+

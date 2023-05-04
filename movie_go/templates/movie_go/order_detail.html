@@ -1,18 +1,21 @@
 {% extends 'movie_go/base.html' %}
 {% block content %}
 <div class="info">
-    <h1>Order Details</h1>
-    
-    <p>Order: 
-      This is order {{ order.id }} for
-      {{user.first_name}} {{user.last_name}}. The order was placed on: {{ order.created_date }} 
+    <div class="info">
+    <h1>Order details</h1>
+    <p>
+ The order was placed on: {{ order.created_date }} 
    </p>
   <p>The order includes these items:</p>
   {% for line_item in line_items %}
+  <h4>{{line_item.id}}</h4>
   <p>
-   Quantity: {{ line_item.quantity}}  Item: {{ line_item.product }}
-  </p>
+   Quantity: {{ line_item.quantity}}
+  </p> <br>
+  <p>You're watching {{ line_item.product.movie.title}} at {{ line_item.product.zone.address}}</p> <br>
+  <p>Date and Time: {{line_item.product.booking_date}}, {{line_item.product.booking_time}}</p>
   
   {% endfor %}
+</div>
    </div>
     {% endblock %}

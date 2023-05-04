@@ -9,6 +9,7 @@ body{
 }
 .credit{
     color: whitesmoke;
+    margin-top: 30px;
 }
 .navbar {
     color: whitesmoke;
@@ -43,17 +44,18 @@ body{
     position: absolute;
     background-color: whitesmoke;
     color: rgb(58, 57, 57);
-    height: 60px;
+    height: 90px;
     top: 50px;
     right: 10px;
-    border-radius: 5px;
 }
 .dropdown-items a{
-    margin-top: 10px;
     color: rgb(58, 57, 57);
 }
-.dropdown-items :not(:first-child){
+.dropdown-items *{
     margin-bottom: 10px;
+}
+.dropdown-items :first-child{
+    margin-top: 10px;
 }
 .dropdown-parent:hover .dropdown-items{
     display: flex;
@@ -103,7 +105,6 @@ body{
     background-color: transparent;
     padding: 8px 20px;
     border: 2px solid rgb(58, 57, 57);
-    border-radius: 10px;
     cursor: pointer;
     color: rgb(58, 57, 57);
     transition: all .5s;
@@ -199,7 +200,6 @@ body{
 #movie{
     background-color: rgb(233, 222, 222);
     height:30px;
-    border-radius: 50px;
     margin-left: 20px;
 }
 .search{
@@ -210,7 +210,6 @@ body{
     border: 2px solid whitesmoke;
     font-family: 'Josefin Sans', sans-serif;
     margin-left: 20px;
-    border-radius: 20px;
     cursor: pointer;
     transition: all .3s;
 }
@@ -319,7 +318,6 @@ body{
     background-color: transparent;
     padding: 8px 20px;
     border: 2px solid rgb(247, 239, 239);
-    border-radius: 10px;
     cursor: pointer;
     color: rgb(247, 239, 239);
     transition: all .5s;
@@ -413,7 +411,9 @@ li{
     text-decoration: none;
     text-decoration-line: underline;
 }
-
+.info table tbody *{
+    margin-left: 20px;
+}
 .basket-btn{
     margin-left: 20px;
     width: 150px;
@@ -442,4 +442,22 @@ li{
 
 .about *{
     margin: 10px;
+}
+
+/*error pages*/
+
+.error{
+    text-align: center;
+}
+.error img{
+    height: 300px;
+    width: 300px;
+}
+
+.num{
+    margin-left: 30px;
+}
+
+.product_form *{
+    margin-bottom: 10px;
 }

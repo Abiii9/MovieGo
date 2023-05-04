@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.decorators import login_required
 from movie_go.models import Zones, Movies, Customer, Order, Product, Cart, LineItem
 from movie_go.forms import SignUpForm
 from movie_go.views.basket import Basket
@@ -40,14 +41,17 @@ def index(request):
 def about(request):
     return render(request, 'movie_go/about.html')
 def movies(request,genre = None):
+    no_movies = None
     movies = movie_all.filter(votes__vote_average__gte=8).order_by('votes__vote_average')[:12]
     if request.method == 'POST':
         movie_name = request.POST.get('movie').strip()
         if movie_name != '':
             movies = movie_all.filter(title=movie_name)
+            if not movies:
+                no_movies = f'No results for {movie_name}. Try checking the spelling'
     if genre:
         movies = movie_all.filter(genres__contains=genre)
-    return render(request, 'movie_go/movies.html', {'movies': movies, 'movie_names': movie_names,'genres': genres})
+    return render(request, 'movie_go/movies.html', {'movies': movies, 'movie_names': movie_names,'genres': genres, 'no_movies': no_movies})
 
 def movie_details(request,id):
     movie = get_from_model(Movies,id)
@@ -62,14 +66,11 @@ def zone_detail(request, movie_id):
     zones = Zones.objects.all()
     return render(request, 'movie_go/zone_detail.html',{'movie':movie,'zones': zones})
 
+@login_required(login_url='movie_go:login')
 def purchase(request):
-    if request.user.is_authenticated:
        user = request.user
        basket = Basket(request)
-       
        return render(request, 'movie_go/purchase.html', {'basket': basket, 'user': user})
-    else:
-        return redirect('movie_go:login')
 
 # save order, clear basket and thank customer
 def payment(request):
@@ -98,5 +99,6 @@ def error_404_view(request, exception):
 #function that gets called incase of a 500 internal server error.
 def error_500_view(request):
     return render(request, 'movie_go/500.html', status=500)
+
 def error_403_view(request, exception):
     return render(request, 'movie_go/403.html', status=403)

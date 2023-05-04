@@ -2,11 +2,15 @@
 {% block content %}
 <div class="info">
     <h1>Product Details</h1>
-    
+    {% if product %}
     <p>Product {{ product.id }}: <a href="{% url 'movie_go:product_edit' id=product.id %}">Edit</a>
       This is product {{ product.id }} which costs
-      {{product.price}}. The product was added on: {{ product.created_date }} 
-   </p>
+      {{product.price}} GBP. The product was added on: {{ product.created_date }} 
+   </p> <br>
+   <p>Movie: {{product.movie.title}} </p>
+   <p>Zone: {{product.zone.address}}</p>
+   <p>Booking date: {{product.booking_date}}</p>
+   <p>Booking time: {{product.booking_time}}</p>
    <p>
     <form action="{% url 'movie_go:basket_add' product.id %}" method="post">
       {{ basket_product_form }}
@@ -15,5 +19,10 @@
     </form>
        </p>
    <p><a href="{% url 'movie_go:product_delete' id=product.id %}">Delete the product</a></p>
+   {% else %}
+   <p>No product added.
+       <a href="{% url 'movie_go:movies' %}" class="button
+    light">Continue shopping</a></p>
+   {% endif %}
 </div>
     {% endblock %}
