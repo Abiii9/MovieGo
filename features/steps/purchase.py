@@ -91,4 +91,4 @@ def user_enters_details_and_submit(context):
 
 @then(u'user is able to purchase the item')
 def user_succeeds_purchasing(context):
-    assert 'Welcome back' in context.browser.page_source
+    assert 'Congratulations' in context.browser.page_source

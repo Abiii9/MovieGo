@@ -7,6 +7,7 @@ from movie_go.models import Votes, Languages, Countries, Companies, Movies, Zone
 from faker import Faker
 from behave import fixture, use_fixture
 from faker import Faker
+from selenium.webdriver import ActionChains
 
 @fixture
 def setup_model_objects(context):
@@ -64,7 +65,7 @@ def setup_model_objects(context):
 
 
 @given(u'user is on the homepage for logout and already logged in')
-def step_impl(context):
+def user_is_on_homepage_ready_for_logout(context):
     use_fixture(setup_model_objects, context)
     base_url = urllib.request.url2pathname(context.test_case.live_server_url)
     open_url = urljoin(base_url,'/')
@@ -77,9 +78,13 @@ def step_impl(context):
     context.browser.find_element('name','Login').click()
 
 @when(u'user clicks on the logout button')
-def step_impl(context):
-    context.browser.find_element(By.CLASS_NAME,'logout_btn').click()
+def user_clicks_on_logout(context):
+    hover = context.browser.find_element(By.CLASS_NAME, "dropdown-parent")
+    actions = ActionChains(context.browser)
+    actions.move_to_element(hover).perform()
+    logout_element = context.browser.find_element(By.CLASS_NAME,'logout_btn')
+    logout_element.click()
 
 @then(u'user is able to log out of the application')
-def step_impl(context):
+def user_logs_out(context):
     assert 'Welcome' not in context.browser.page_source

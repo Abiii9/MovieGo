@@ -7,6 +7,7 @@ from movie_go.models import Votes, Languages, Countries, Companies, Movies, Zone
 from faker import Faker
 from behave import fixture, use_fixture
 from faker import Faker
+from selenium.webdriver import ActionChains
 
 @fixture
 def setup_model_objects(context):
@@ -79,7 +80,11 @@ def user_logs_in(context):
     passwordfield = context.browser.find_element('name','password')
     passwordfield.send_keys('p@ssw0rd')
     context.browser.find_element('name','Login').click()
-    context.browser.find_element(By.CLASS_NAME, "orders_btn").click()
+    hover = context.browser.find_element(By.CLASS_NAME, "dropdown-parent")
+    actions = ActionChains(context.browser)
+    actions.move_to_element(hover).perform()
+    order_element = context.browser.find_element(By.CLASS_NAME,'orders_btn')
+    order_element.click()
 
 @then(u'user can see the list of orders they have made')
 def user_on_order_list_page(context):

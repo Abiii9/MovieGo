@@ -65,18 +65,3 @@ def user_fills_form(context):
 @then(u'it succeeds')
 def product_added(context):
     assert '67.0' in context.browser.page_source
-
-
-@given(u'we have specific products to add')
-def step_impl(context):
-    raise NotImplementedError(u'STEP: Given we have specific products to add')
-
-
-@when(u'we visit the listing page')
-def step_impl(context):
-    raise NotImplementedError(u'STEP: When we visit the listing page')
-
-
-@then(u'we will find \'another thing\'')
-def step_impl(context):
-    raise NotImplementedError(u'STEP: Then we will find \'another thing\'')
