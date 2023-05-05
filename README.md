@@ -76,16 +76,16 @@ Please make sure that you have installed the latest version of the dependencies.
 
 ## User account details
 
-superuser
-username: admin
+superuser\
+username: admin\
 password: moviego@123
 
-staff user
-username: SarahWalter
+staff user\
+username: SarahWalter\
 password: p@ssw0rd
 
-customer user
-username: JasmineOdom
+customer user\
+username: JasmineOdom\
 password: p@ssw0rd
 
 
