@@ -2,7 +2,7 @@
 
 ## What is it
 
-This application has been developed as a part of an assignment of the Enterprise Software Development course. This application is an e-commerce aplication that allows people to enjoy theatre-like experience along with their friends at a reasonable price . There is a collection of more than four thousand movies along with five mini-theatre zones for the users to pick. the dataset for the movies has been taken from Kaggle.(https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset?select=movies_metadata.csv).
+This application has been developed as a part of an assignment of the Enterprise Software Development course. This is an e-commerce application that allows people to enjoy theatre-like experience along with their friends at a reasonable price . There is a collection of more than four thousand movies along with five mini-theatre zones for the users to pick. The dataset for the movies has been taken from Kaggle.(https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset?select=movies_metadata.csv).
 
 
 ## Where to get it
@@ -15,16 +15,32 @@ To get MovieGo up and running, the following steps need to be followed.
 
 ~~~
 pyenv install 3.11.0
+pyenv local 3.11.0
 py -3 -m venv .venv
 source  venv/bin/activate
 pip install --upgrade pip
 pip install Django
 ~~~
 
+## Technologies used
+
+- HTML
+- CSS
+- Python Django
+- JavaScript
+- Gherkin
+
+There are some libraries that have been used in this project. 
+
+This includes Behave, Selenium and Webdriver-manager for Behavioral Driven Development Testing.
+Chart.js - this is a JavaScript library that has been used to render the charts for the dashboard page.
+
+
 The following dependencies need to be installed.
 ~~~
 pip install selenium
 pip install behave
+pip install webdriver-manager
 pip install gunicorn
 ~~~
 Instead, run the following command to get all the dependencies installed at once.
@@ -54,11 +70,11 @@ Here are a few features that assist to navigate the application effectively.
 - A dashboard for staff users that can view the charts for orders and customer count per day.
 - An order list page that enables users to view a list and in-detail view of the orders they have made.
 
-##Maintenance
+## Maintenance
 
 Please make sure that you have installed the latest version of the dependencies.
 
-##User account details
+## User account details
 
 superuser
 username: admin
@@ -69,7 +85,7 @@ username: SarahWalter
 password: p@ssw0rd
 
 customer user
-username: CatherineHarris
+username: JasmineOdom
 password: p@ssw0rd
 
 
