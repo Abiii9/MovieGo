@@ -46,7 +46,7 @@ pip install gunicorn
 Instead, run the following command to get all the dependencies installed at once.
 
 ~~~
-pip install -r raquirements.txt
+pip install -r requirements.txt
 ~~~
 Now, run the following command to start the development server.
 
