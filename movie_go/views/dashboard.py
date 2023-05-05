@@ -4,6 +4,8 @@ from movie_go.models import Zones, Movies, Customer, Order, Product, Cart, LineI
 from datetime import datetime
 from collections import Counter
 from django.core.exceptions import PermissionDenied
+#Helper functions
+#function to return the count of the model instances each date
 def chart_data(Model):
     op = []
     total_data = Model.objects.values_list('created_date').order_by('-created_date')
@@ -11,14 +13,19 @@ def chart_data(Model):
         op.append(str(date[0])[:10])
     return dict(Counter(op))
 
+#function to return the count of the total model instances
 def data_count(Model):
     data = Model.objects.count()
     return data
 
+
+#function to return the count of the instances created today.
 def data_today(Model):
     current = str(datetime.now())[:10]
     data = Model.objects.filter(created_date__contains=current).count()
     return data
+
+#function that processes the data in order to be sent to the chart.js
 @login_required
 def dashboard(request):
     user = request.user
@@ -38,10 +45,10 @@ def dashboard(request):
         listx2.reverse()
         listy2 = list(y2Values)
         listy2.reverse()
-        #count_processing
+        #count the number of orders and customers each date.
         order_count = data_count(Order)
         customers_count = data_count(Customer)
-        #count today
+        #count the number of orders and customers today.
         orders_today = data_today(Order)
         customers_today = data_today(Customer)
         return render(request, 'movie_go/dashboard.html',{'x1Values': listx1,'y1Values': listy1,'x2Values': listx2,'y2Values': listy2, 'order_count': order_count, 'customers_count': customers_count, 'orders_today': orders_today, 'customers_today': customers_today})
@@ -49,4 +56,5 @@ def dashboard(request):
         raise PermissionDenied()
     else:
         return redirect('movie_go:login')
+
 
