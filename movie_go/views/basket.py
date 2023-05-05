@@ -82,7 +82,6 @@ class Basket(object):
 @require_POST
 def basket_add(request, product_id):
     basket = Basket(request)
-    print(product_id)
     product = get_object_or_404(Product, id=product_id)
     form = BasketAddProductForm(request.POST)
     if form.is_valid():

@@ -1,8 +1,10 @@
 # Create your tests here.
 from django.test import Client, TestCase
+from django.urls import reverse
 from django.contrib.auth.models import User
 from movie_go.models import Votes, Languages, Countries, Companies, Movies, Zones, Product, Customer, Order, Cart, LineItem
 from movie_go.views.basic import get_from_model
+from movie_go.views.dashboard import data_count, data_today
 import ast
 from faker import Faker
 import datetime
@@ -110,4 +112,102 @@ class TempModelTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'movie_go/zone_detail.html')
         self.assertContains(response,'Number of seats: 5')
+    def test_login(self):
+        customer_obj1 = Customer.objects.get(user_id=1)
+        login_url = '/accounts/login/'
+        response = self.client.post(login_url, {'username': customer_obj1.user.username, 'password': 'p@ssw0rd'})
+        self.assertEqual(response.url, '/')
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, '/')
+        response1 = self.client.get(response.url)
+        self.assertContains(response1, f'Welcome back, {customer_obj1.user.first_name}')
+    def test_purchase_without_login(self):
+        response = self.client.get('/purchase/')
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, '/accounts/login/?next=/purchase/')
+    def test_purchse_with_login(self):
+        client = Client()
+        customer_obj1 = Customer.objects.get(user_id=1)
+        client.login(username=customer_obj1.user.username, password='p@ssw0rd')
+        response = client.get('/purchase/')
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'You have these in your basket:')
+    def test_payment(self):
+        client = Client()
+        customer_obj1 = Customer.objects.get(user_id=1)
+        client.login(username=customer_obj1.user.username, password='p@ssw0rd')
+        response = client.get('/payment/')
+        self.assertEqual(response.status_code, 302)
+        response1 = client.get(response.url)
+        self.assertContains(response1, 'Congratulations! Your order has been placed')
+    def test_order_list_without_login(self):
+        client = Client()
+        response = client.get('/user_order_list/')
+        self.assertEqual(response.status_code, 302)
+        self.assertNotEqual(response.url, '/user_order_list/')
+    def test_order_list_with_login(self):
+        client = Client()
+        customer_obj1 = Customer.objects.get(user_id=1)
+        client.login(username=customer_obj1.user.username, password='p@ssw0rd')
+        response = client.get('/user_order_list/')
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, f'Order List for {customer_obj1.user.first_name}')
+    def test_order_detail(self):
+        client = Client()
+        customer_obj1 = Customer.objects.get(user_id=1)
+        client.login(username=customer_obj1.user.username, password='p@ssw0rd')
+        response = client.get('/user_order/1/')
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'The order includes these items')
+    def test_product_list(self):
+        client = Client()
+        response = client.get('/product_list/')
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'This is product 1 which costs\n       87.00')
+    def test_product_detail(self):
+        client = Client()
+        response = client.get('/product/1/')
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Movie: Toy Story')
+    def test_product_new(self):
+        movie_obj1 = Movies.objects.get(id=1)
+        zone_obj1 = Zones.objects.get(id=1)
+        response = self.client.post(f'/product_new/{movie_obj1.id}/{zone_obj1.id}')
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Product confirmation')
+    def test_product_edit(self):
+        client = Client()
+        response = client.get('/product/1/edit/')
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Product confirmation')
+    def test_product_delete(self):
+        client = Client()
+        response = client.get('/product/1/delete/')
+        self.assertEqual(response.url, '/movies/')
+        response1 = client.get(response.url)
+        self.assertContains(response1, 'Search for a movie')
+    def test_data_count(self):
+        count = data_count(Product)
+        self.assertEqual(count,2)
+    def test_data_today(self):
+        count_today = data_today(Customer)
+        self.assertEqual(count_today, 5)
+    def test_dashboard_with_customer(self):
+        #client = Client()
+        customer_obj1 = Customer.objects.get(user_id=1)
+        self.client.login(username=customer_obj1.user.username, password='p@ssw0rd')
+        response = self.client.get('/dashboard/')
+        self.assertEqual(response.status_code, 403)
+    def test_basket_add(self):
+        client = Client()
+        response = client.post('/basket_add/1/')
+        self.assertEqual(response.url, '/basket_detail/')
+        response1 = client.get(response.url)
+        self.assertContains(response1, 'You have these in your basket:')
     
+    def test_basket_remove(self):
+        client = Client()
+        response = client.post('/basket_remove/1/')
+        self.assertEqual(response.url, '/basket_detail/')
+        response1 = client.get(response.url)
+        self.assertContains(response1, 'Cart is empty')
